@@ -1,4 +1,5 @@
 #Written by MMKF https://github.com/MichaelK-F/windows-wallpaper-changer
+Write-Output "Ignore this window, it's just a console window for the script to run in. Please don't close it until you're done with the program."
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
