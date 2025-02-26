@@ -1,5 +1,6 @@
 # Windows wallpaper changer
 ![image](https://github.com/user-attachments/assets/2d396484-e5dc-4fe7-b197-991d1700d769)
+
 A utility written in powershell to replace the cached wallpaper file on windows. Very useful on systems where the wallpaper is set using group policy and can not be changed.
 
 ## How does it work?
