@@ -9,10 +9,10 @@ It replaces the cached wallpaper. Due to it replacing the file and not actually 
 
 ## Building .exe from .ps1 (advanced users)
 Install ps2exe (only has to be done once):
-```Install-Module -Name ps2exe```
+`Install-Module -Name ps2exe`
 Convert ps1 to exe:
-```Invoke-PS2EXE .\wallpaper-changer.ps1 .\wallpaper-changer.exe```
-It is possible to convert it with the `-noConsole` parameter but it triggers a lot of anti-virus.
+`Invoke-PS2EXE .\wallpaper-changer.ps1 .\wallpaper-changer.exe`
+It is possible to convert it with the `-noConsole` parameter but it triggers a lot of anti-virus software.
 
 
 ### If you can help improve this tool, make a pull request with your changes and I will merge it.
