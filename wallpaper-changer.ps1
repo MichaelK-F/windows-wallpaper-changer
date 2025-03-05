@@ -1,8 +1,17 @@
 #Written by MMKF https://github.com/MichaelK-F/windows-wallpaper-changer
 Write-Output "Ignore this window, it's just a console window for the script to run in. Please don't close it until you're done with the program."
 Add-Type -AssemblyName System.Windows.Forms
-Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
+
+#stuff to minimise the console window stolen from a random reddit comment: https://www.reddit.com/r/PowerShell/comments/1ed1xwx/comment/lf6ptwm/
+Add-Type -Name Window -Namespace Console -MemberDefinition '
+[DllImport("Kernel32.dll")]
+public static extern IntPtr GetConsoleWindow();
+[DllImport("user32.dll")]
+public static extern bool ShowWindow(IntPtr hWnd, Int32 nCmdShow);
+'
+$consolePtr = [Console.Window]::GetConsoleWindow()
+[Console.Window]::ShowWindow($consolePtr, 0) | Out-Null
 
 function setWallpaper {
     Remove-Item -Recurse -Force "$env:APPDATA\Microsoft\Windows\Themes\CachedFiles\"
@@ -88,5 +97,10 @@ $label2.AutoSize = $true
 $label2.Location = New-Object System.Drawing.Point(10, 140)
 $form.Controls.Add($label2)
 
-$form.ShowDialog()
+#hopefully makes the form show up on top of everything else
+$form.Add_Load({
+    $form.Activate()
+})
+
+$form.ShowDialog() | Out-Null
 #Written by MMKF https://github.com/MichaelK-F/windows-wallpaper-changer
