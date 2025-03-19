@@ -7,6 +7,9 @@ on:
   pull_request:
     branches:
       - main
+  release:
+    types:
+      - created
 
 jobs:
   build:
@@ -29,3 +32,9 @@ jobs:
         with:
           name: wallpaper-changer-exe
           path: wallpaper-changer.exe
+
+      - name: Upload to Release
+        uses: softprops/action-gh-release@v1
+        if: github.event_name == 'release'
+        with:
+          files: wallpaper-changer.exe
