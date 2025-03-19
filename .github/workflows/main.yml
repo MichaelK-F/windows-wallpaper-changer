@@ -1,0 +1,31 @@
+name: Build Wallpaper Changer
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install PS2EXE Module
+        shell: pwsh
+        run: Install-Module -Name ps2exe -Force -Scope CurrentUser -AllowClobber
+
+      - name: Compile PowerShell Script
+        shell: pwsh
+        run: Invoke-PS2EXE .\wallpaper-changer.ps1 .\wallpaper-changer.exe
+
+      - name: Upload Executable Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: wallpaper-changer-exe
+          path: wallpaper-changer.exe
